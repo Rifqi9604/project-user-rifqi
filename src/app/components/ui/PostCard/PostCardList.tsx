@@ -60,10 +60,16 @@ function PostCardList() {
       setTotalPages(response.data.meta.last_page);
       setTotalPosts(response.data.meta.total);
     } catch (error) {
-      console.error(
-        "Error fetching posts:",
-        error.response ? error.response.data : error.message
-      );
+      if (axios.isAxiosError(error)) {
+        // Access error response safely
+        console.error(
+          "Error fetching posts:",
+          error.response?.data || error.message
+        );
+      } else {
+        // Handle any other types of errors (e.g., network issues)
+        console.error("Unexpected error fetching posts:", error);
+      }
     } finally {
       setIsLoading(false);
     }

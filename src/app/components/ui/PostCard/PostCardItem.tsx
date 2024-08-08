@@ -21,11 +21,11 @@ const PostCardItem: React.FC<PostCardItemProps> = ({ title, image, date }) => {
         let currentTitle = title;
         let wordCount = currentTitle.split(" ").length;
 
-        element.textTitle = currentTitle;
+        element.textContent = currentTitle;
         while (element.scrollHeight > element.offsetHeight && wordCount > 1) {
           wordCount--;
           currentTitle = truncateText(title, wordCount);
-          element.textTitle = currentTitle;
+          element.textContent = currentTitle;
         }
 
         setTruncatedText(currentTitle);
